@@ -1,5 +1,133 @@
-# Vue 3 + TypeScript + Vite
+# 计算机I/O系统交互式模拟器
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+一个基于Vue 3 + TypeScript的交互式教学工具，用于深入理解计算机I/O控制方式与中断处理机制。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 🎯 项目特色
+
+### 核心功能
+
+1. **I/O数据传输模式可视化对比**
+   - 轮询模式（Polling）：展示CPU不断查询设备状态的过程
+   - 中断模式（Interrupt）：演示设备主动通知CPU的机制
+   - DMA模式：展示直接内存访问的高效传输方式
+
+2. **中断处理流程交互式演练**
+   - 8个详细步骤的分步演示
+   - 实时显示CPU寄存器、内存状态变化
+   - 可视化中断向量表和堆栈操作
+
+### 技术特点
+
+- 🎨 **现代化UI设计**：采用渐变背景和毛玻璃效果
+- 🔄 **流畅动画效果**：自定义动画系统，生动展示数据流动
+- 📱 **响应式布局**：适配不同屏幕尺寸
+- 🎮 **交互式控制**：支持手动步进和自动播放
+- 📊 **性能监控**：实时显示CPU利用率和传输效率
+- 📚 **详细帮助文档**：内置使用指南和常见问题解答
+
+## 🚀 快速开始
+
+### 环境要求
+
+- Node.js 16+
+- pnpm（推荐）或 npm
+
+### 安装依赖
+
+```bash
+pnpm install
+```
+
+### 启动开发服务器
+
+```bash
+pnpm dev
+```
+
+访问 http://localhost:5173 查看应用
+
+### 构建生产版本
+
+```bash
+pnpm build
+```
+
+### 预览生产版本
+
+```bash
+pnpm preview
+```
+
+## 📁 项目结构
+
+```
+src/
+├── components/           # Vue组件
+│   ├── IOSimulator.vue  # I/O模拟器主组件
+│   ├── InterruptDemo.vue # 中断演示组件
+│   └── HelpModal.vue    # 帮助文档模态框
+├── composables/         # 组合式函数
+│   ├── useSimulator.ts  # I/O模拟器状态管理
+│   └── useInterruptDemo.ts # 中断演示状态管理
+├── utils/              # 工具函数
+│   └── animations.ts   # 动画控制器和工具类
+├── App.vue            # 主应用组件
+├── main.ts           # 应用入口
+└── style.css         # 全局样式
+```
+
+## 🎓 教学内容
+
+### I/O控制方式对比
+
+| 模式 | CPU利用率 | 传输效率 | 适用场景 |
+|------|-----------|----------|----------|
+| 轮询 | 90% | 30% | 简单嵌入式系统 |
+| 中断 | 20% | 85% | 通用计算机系统 |
+| DMA | 10% | 95% | 高性能数据传输 |
+
+### 中断处理流程
+
+1. **初始状态** - CPU执行主程序
+2. **中断请求** - I/O设备发送IRQ信号
+3. **中断响应** - CPU响应并发送确认
+4. **现场保护** - 保存寄存器到堆栈
+5. **查找ISR** - 通过中断向量表定位服务程序
+6. **执行ISR** - 处理中断请求
+7. **现场恢复** - 从堆栈恢复寄存器
+8. **中断返回** - 继续执行主程序
+
+## 🛠️ 技术栈
+
+- **前端框架**: Vue 3 (Composition API)
+- **开发语言**: TypeScript
+- **构建工具**: Vite
+- **包管理器**: pnpm
+- **工具库**: @vueuse/core
+
+## 📖 使用指南
+
+1. **选择模式**：点击顶部的模式按钮切换不同的I/O传输模式
+2. **开始模拟**：点击"开始模拟"按钮观察动画演示
+3. **查看指标**：观察CPU利用率和传输效率的变化
+4. **阅读日志**：查看详细的模拟过程日志
+5. **中断演练**：切换到中断处理标签页，使用步进控制深入了解中断机制
+6. **获取帮助**：点击右上角的"?"按钮查看详细使用说明
+
+## 🎯 学习目标
+
+通过本模拟器，学习者可以：
+
+- 理解三种主要I/O控制方式的工作原理和特点
+- 掌握中断处理的完整流程和关键概念
+- 了解CPU、内存、I/O控制器之间的交互关系
+- 认识不同I/O方式的性能差异和适用场景
+- 深入理解计算机系统的底层工作机制
+
+## 🤝 贡献
+
+欢迎提交Issue和Pull Request来改进这个项目！
+
+## 📄 许可证
+
+MIT License
