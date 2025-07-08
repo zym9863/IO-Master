@@ -406,6 +406,7 @@ const closeModal = () => {
   flex: 1;
   overflow-y: auto;
   padding: 2rem;
+  color: #2c3e50;
 }
 
 .help-section h3 {
@@ -491,6 +492,7 @@ const closeModal = () => {
 .usage-tips li {
   margin-bottom: 0.5rem;
   line-height: 1.5;
+  color: #333;
 }
 
 .interrupt-steps {
