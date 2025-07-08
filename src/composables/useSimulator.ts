@@ -1,5 +1,5 @@
 import { ref, computed, onUnmounted } from 'vue'
-import { animationController, stateManager, performanceMonitor, utils } from '../utils/animations'
+import { animationController, performanceMonitor, utils } from '../utils/animations'
 
 // I/O模拟器状态管理
 export function useIOSimulator() {
@@ -100,7 +100,7 @@ export function useIOSimulator() {
     }
   }
   
-  const updatePerformanceMetrics = (mode: string) => {
+  const updatePerformanceMetrics = () => {
     const config = currentModeConfig.value
     performanceMetrics.value = {
       transferEfficiency: config.efficiency,
@@ -158,7 +158,7 @@ export function useIOSimulator() {
     currentSimulationStep.value = 0
     
     addLog(`开始${currentModeConfig.value.name}模拟`, 'info')
-    updatePerformanceMetrics(selectedMode.value)
+    updatePerformanceMetrics()
     
     try {
       switch (selectedMode.value) {

@@ -35,7 +35,7 @@ export class AnimationController {
   }
 
   // 创建高亮动画
-  createHighlightAnimation(element: HTMLElement, color: string = '#f39c12'): Animation {
+  createHighlightAnimation(element: HTMLElement): Animation {
     const keyframes = [
       { boxShadow: `0 0 0 rgba(243, 156, 18, 0)` },
       { boxShadow: `0 0 20px rgba(243, 156, 18, 0.8)` },

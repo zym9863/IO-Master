@@ -1,5 +1,5 @@
 import { ref, computed, watch, onUnmounted } from 'vue'
-import { animationController, utils } from '../utils/animations'
+import { animationController } from '../utils/animations'
 
 // 中断处理步骤定义
 const INTERRUPT_STEPS = [

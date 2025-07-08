@@ -211,7 +211,7 @@ const dmaTargetAddr = ref('0x3000')
 const dmaCount = ref(1024)
 
 // 内存块
-const memoryBlocks = ref(Array(8).fill(null).map((_, i) => ({
+const memoryBlocks = ref(Array(8).fill(null).map(() => ({
   data: '',
   active: false
 })))
