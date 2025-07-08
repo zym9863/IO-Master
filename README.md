@@ -1,3 +1,5 @@
+[English](./README_EN.md) | [简体中文](./README.md)
+
 # 计算机I/O系统交互式模拟器
 
 一个基于Vue 3 + TypeScript的交互式教学工具，用于深入理解计算机I/O控制方式与中断处理机制。
