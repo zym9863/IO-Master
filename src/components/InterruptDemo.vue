@@ -604,29 +604,51 @@ onUnmounted(() => {
 <style scoped>
 .interrupt-demo {
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 24px;
+  padding: 2.5rem;
   color: var(--text-primary);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.interrupt-demo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--secondary-color));
+  border-radius: 24px 24px 0 0;
 }
 
 .demo-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  animation: fadeIn 0.6s ease-out both;
 }
 
 .demo-header h2 {
-  font-size: 2rem;
-  margin: 0 0 0.5rem 0;
+  font-size: 2.2rem;
+  margin: 0 0 0.75rem 0;
   color: var(--primary-color);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .description {
   color: var(--text-secondary);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin: 0;
   line-height: 1.6;
+  font-weight: 500;
 }
 
 .demo-container {
@@ -638,13 +660,15 @@ onUnmounted(() => {
 
 .system-view {
   position: relative;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 15px;
-  padding: 2rem;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%);
+  border-radius: 20px;
+  padding: 2.5rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto auto;
-  gap: 1.5rem;
+  gap: 2rem;
+  border: 1px solid var(--border-light);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .component {
