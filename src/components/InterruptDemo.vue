@@ -417,9 +417,49 @@ const stopAutoPlay = () => {
   }
 }
 
+/**
+ * 重置中断演示，清除所有激活标记与记录，恢复到初始步骤。
+ */
 const resetDemo = () => {
   stopAutoPlay()
   currentStep.value = 1
+  cpuState.value = '执行主程序'
+  programCounter.value = '0x1000'
+  statusWord.value = '0x0200'
+  registerAX.value = '0x1234'
+  registerBX.value = '0x5678'
+  highlightPC.value = false
+  highlightPSW.value = false
+  highlightAX.value = false
+  highlightBX.value = false
+  ivtActive.value = false
+  stackActive.value = false
+  isrActive.value = false
+  deviceActive.value = false
+  deviceRequesting.value = false
+  deviceStatus.value = '准备就绪'
+  deviceData.value = 'Data_001'
+  interruptSignal.value = false
+  picActive.value = false
+  interruptRequestRegister.value = '00000000'
+  interruptServiceRegister.value = '00000000'
+  showInterruptRequest.value = false
+  showInterruptResponse.value = false
+  stackPointer.value = '0xFFFF'
+  stackItems.value = []
+  interruptVectors.value.forEach(vector => {
+    vector.highlight = false
+  })
+  programInstructions.value.forEach(instr => {
+    instr.current = false
+    instr.executed = false
+  })
+  programInstructions.value[0].current = true
+  isrInstructions.value.forEach(instr => {
+    instr.current = false
+    instr.executed = false
+  })
+  registerChanges.value = []
   executeStep()
 }
 

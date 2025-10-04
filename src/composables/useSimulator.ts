@@ -110,6 +110,9 @@ export function useIOSimulator() {
     cpuUtilization.value = config.cpuUsage
   }
   
+  /**
+   * 重置模拟器到干净的初始状态，确保组件、动画与性能指标无残留。
+   */
   const resetSimulation = () => {
     isSimulating.value = false
     currentSimulationStep.value = 0
@@ -117,8 +120,15 @@ export function useIOSimulator() {
     
     // 重置组件状态
     componentStates.value.controller.active = false
+    componentStates.value.controller.status = '就绪'
+    componentStates.value.controller.data = '无'
     componentStates.value.device.active = false
+    componentStates.value.device.status = '空闲'
+    componentStates.value.device.data = '无数据'
     componentStates.value.dma.active = false
+    componentStates.value.dma.sourceAddr = '0x2000'
+    componentStates.value.dma.targetAddr = '0x3000'
+    componentStates.value.dma.count = 1024
     componentStates.value.memory.forEach(block => {
       block.data = ''
       block.active = false
@@ -149,6 +159,9 @@ export function useIOSimulator() {
     addLog('模拟器已重置', 'info')
   }
   
+  /**
+   * 启动当前模式的模拟流程，并在开始前同步初始状态以避免脏数据。
+   */
   const startSimulation = async () => {
     if (isSimulating.value) return
     
@@ -156,6 +169,25 @@ export function useIOSimulator() {
     isSimulating.value = true
     simulationStartTime.value = Date.now()
     currentSimulationStep.value = 0
+    
+    // 运行前同步初始状态，确保重复启动时数据一致
+    componentStates.value.controller.active = false
+    componentStates.value.controller.status = '就绪'
+    componentStates.value.controller.data = '无'
+    componentStates.value.device.active = false
+    componentStates.value.device.status = '空闲'
+    componentStates.value.device.data = '无数据'
+    componentStates.value.dma.active = false
+    componentStates.value.dma.sourceAddr = '0x2000'
+    componentStates.value.dma.targetAddr = '0x3000'
+    componentStates.value.dma.count = 1024
+    componentStates.value.memory.forEach(block => {
+      block.data = ''
+      block.active = false
+    })
+    Object.keys(animationStates.value).forEach(key => {
+      animationStates.value[key as keyof typeof animationStates.value] = false
+    })
     
     addLog(`开始${currentModeConfig.value.name}模拟`, 'info')
     updatePerformanceMetrics()

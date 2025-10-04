@@ -249,13 +249,23 @@ const addLog = (message: string) => {
   }
 }
 
+/**
+ * 将模拟器恢复到初始状态，清理组件、动画与日志信息。
+ */
 const resetSimulation = () => {
   isSimulating.value = false
   cpuStatus.value = 'idle'
   cpuActivity.value = '等待指令'
   controllerActive.value = false
+  controllerStatus.value = '就绪'
+  controllerData.value = '无'
   deviceActive.value = false
+  deviceStatus.value = '空闲'
+  deviceData.value = '无数据'
   dmaActive.value = false
+  dmaSourceAddr.value = '0x2000'
+  dmaTargetAddr.value = '0x3000'
+  dmaCount.value = 1024
   showPollingFlow.value = false
   showInterruptFlow.value = false
   showDmaFlow.value = false
@@ -268,10 +278,32 @@ const resetSimulation = () => {
   })
 }
 
+/**
+ * 启动模拟流程，并在运行前同步初始状态以避免脏数据残留。
+ */
 const startSimulation = async () => {
   if (isSimulating.value) return
   
   isSimulating.value = true
+  controllerActive.value = false
+  controllerStatus.value = '就绪'
+  controllerData.value = '无'
+  deviceActive.value = false
+  deviceStatus.value = '空闲'
+  deviceData.value = '无数据'
+  dmaActive.value = false
+  dmaSourceAddr.value = '0x2000'
+  dmaTargetAddr.value = '0x3000'
+  dmaCount.value = 1024
+  memoryBlocks.value.forEach(block => {
+    block.data = ''
+    block.active = false
+  })
+  showPollingFlow.value = false
+  showInterruptFlow.value = false
+  showDmaFlow.value = false
+  cpuUtilization.value = 0
+  transferEfficiency.value = 0
   addLog(`开始${currentModeInfo.value.name}模拟`)
   
   switch (selectedMode.value) {
